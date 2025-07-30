@@ -1,5 +1,20 @@
 <?php
+require_once "isauth.php";
+
+
+if (isAuth()) {
+    header("Location: index.php");
+}
+
 require_once "bdd-crud.php";
+
+if (isset($_POST['email']) && isset($_POST['password'])) {
+    create_user($_POST['email'], $_POST['password']);
+    if ($user_id === false) {
+        echo "Email déjà utilisé...";
+    }
+}
+
 
 ?>
 
@@ -14,7 +29,12 @@ require_once "bdd-crud.php";
 </head>
 
 <body>
-   <!-- TODO Formulaire pour s'inscrire (créer un utilisateur) -->
+   <form action="" method="post">
+    <input type="email" name="email" placeholder="Email">
+    <input type="text" name="password" placeholder="Mot de passe">
+   <button type="submit">S'inscrire</button>
+   </form>
+   <a href="login.php">Vous avez déjà un compte ?</a>
 </body>
 
 </html>

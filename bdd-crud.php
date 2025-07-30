@@ -10,23 +10,25 @@
  */
 
 
+
+
 function connect_database() : PDO{
     $database = new PDO("mysql:host=127.0.0.1;dbname=app-database","root","root");
     return $database;
 }
 // CRUD User
 // Create (signin)
-function create_user(string $email,string $password) : int | null {
+function create_user(string $email,string $password) : int | false {
     $database = connect_database();
-    // TODO
-
+    $request = $database->prepare("INSERT INTO users (email, password) VALUES(?, ?)");
+    $request->execute([htmlspecialchars($email), password_hash($password, PASSWORD_BCRYPT)]);
+    $user_id = $request->fetch(PDO::FETCH_ASSOC);
     return $user_id;
 }
 // Read (login)
 function get_user(int $id) : array | null {
     $database = connect_database();
-    // TODO 
-
+    $request = $database->prepare();
     return $user;
 }
 

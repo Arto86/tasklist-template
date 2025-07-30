@@ -1,8 +1,9 @@
 <?php
+require_once "isauth.php";
 require_once "bdd-crud.php";
-// TODO Redirection vers la page de connexion si l'utilisateur n'est pas connecté
-
-// TODO Afficher la liste des tâches de l'utilisateur connecté
+if (isAuth() === false) {
+    header("Location: login.php");
+}
 
 ?>
 
@@ -20,8 +21,7 @@ require_once "bdd-crud.php";
         <a href="inscription.php">Se créer un compte</a>
     </header>
     <h1>Liste des tâches</h1>
-    <div class="tasks"> 
-        <!-- TODO Afficher la liste des tâches de l'utilisateur connecté -->
+    <div class="tasks">
 
     </div>
 </body>
