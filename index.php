@@ -5,6 +5,8 @@ if (isAuth() === false) {
     header("Location: login.php");
 }
 
+
+$tasks = get_all_task($_SESSION['user_id']);
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +24,17 @@ if (isAuth() === false) {
     </header>
     <h1>Liste des tâches</h1>
     <div class="tasks">
-
+    <?php foreach ($tasks as $task):?>
+        <div class="task">
+            <h2><?= "$task[name]"?></h2>
+            <p><?= "$task[description]"?></p>
+            <p><?= "$task[urgent]"?></p>
+            <a href="validate-task.php?id=<?= $task['id']?>">Valider</a>
+            <a href="show-task.php?id=<?= $task['id']?>">Voir plus</a>
+            <a href="delete-task.php?id=<?= $task['id']?>">Supprimer</a>
+        </div>
+    <?php endforeach ?>
     </div>
+    <a href="add-task.php"><h2>Ajouter une tâche</h2></a>
 </body>
 </html>

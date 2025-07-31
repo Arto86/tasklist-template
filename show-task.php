@@ -1,6 +1,14 @@
 <?php
+
+require_once "isauth.php";
 require_once "bdd-crud.php";
-// BONUS Afficher les détails d'une tâche spécifique en fonction de son ID passé en $_GET
+if (isAuth() === false) {
+    header("Location: login.php");
+}
+
+
+$task = get_task($_GET['id']);
+
 
 ?>
 <!DOCTYPE html>
@@ -11,6 +19,12 @@ require_once "bdd-crud.php";
     <title>Single Task</title>
 </head>
 <body>
-    
+    <div class="task">
+        <h2><?= "$task[name]"?></h2>
+        <p><?= "$task[description]"?></p>
+        <p><?= "$task[urgent]"?></p>
+        <a href="index.php">Retour</a>
+        <a href="delete-task.php?id=<?= $task['id']?>">Supprimer</a>
+    </div>
 </body>
 </html>

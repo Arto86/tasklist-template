@@ -1,6 +1,6 @@
 <?php
-// TODO Destruction de la session pour déconnecter l'utilisateur et redirection vers la page de connexion
-
+session_start();
+session_destroy();
 
 ?>
 <!DOCTYPE html>
@@ -11,6 +11,8 @@
     <title>Disconnect</title>
 </head>
 <body>
-    
+    <h1>Souriez! Vous êtes déconnecté...</h1>
+    <a href="login.php"><h2>Vos tâches vous attendent... Connectez-vous!</h2></a>
+    <a href="inscription.php"><h2>C'était le compte d'un(e) ami(e) ?</h2></a>
 </body>
 </html>

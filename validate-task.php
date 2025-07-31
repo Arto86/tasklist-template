@@ -1,16 +1,15 @@
 <?php
+
+require_once "isauth.php";
 require_once "bdd-crud.php";
-// BONUS Valider une tache dans la BDD et redirection vers la page d'accueil
+if (isAuth() === false) {
+    header("Location: login.php");
+}
+
+$isValidate = validate_task($_GET['id']);
+
+if ($isValidate == true) {
+    header("Location: index.php");
+} var_dump($_GET);
 
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>validate Task</title>
-</head>
-<body>
-    
-</body>
-</html>

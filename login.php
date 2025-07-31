@@ -6,17 +6,18 @@ if (isAuth()) {
 }
 
 require_once "bdd-crud.php";
+$error = null;
 
 if (isset($_POST['email']) && isset($_POST['password'])) {
     $database = connect_database();
     $request = $database->prepare("SELECT * FROM users WHERE email = ?");
     $request->execute([$_POST['email']]);
-    $user = $request->fetchAll(PDO::FETCH_ASSOC);
-    if ($user['password'] === $_POST['password']) {
+    $user = $request->fetch(PDO::FETCH_ASSOC);
+    if (password_verify(htmlspecialchars($_POST['password']), $user['password'])) {
         $_SESSION['user_id'] = $user['id'];
         header("Location: index.php");
     } else {
-        echo "Erreur dans l'email ou le mot de passe.";
+        $error = "Mauvais mot de passe";
     }
 
 }
@@ -37,6 +38,10 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         <input type="text" name="password" placeholder="Votre mot de passe">
         <button>Se connecter</button>
     </form>
+<?php
+    if (isset($error)) :?>
+    <h2><?= $error;?></h2>
+<?php endif?>
     <a href="inscription.php">Pas de compte ? S'inscrire</a>
 </body>
 </html>

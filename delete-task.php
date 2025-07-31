@@ -1,18 +1,14 @@
 <?php
+require_once "isauth.php";
 require_once "bdd-crud.php";
+if (isAuth() === false) {
+    header("Location: login.php");
+}
 
-// TODO Suppréssion d'une tâche en fonction de son ID passé en $_GET
+$isSuccessful = delete_task($_GET['id']);
 
-
+if ($isSuccessful === true){
+    header("Location: index.php");
+} 
+var_dump($_GET);
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Supprimer une tache</title>
-</head>
-<body>
-    
-</body>
-</html>
