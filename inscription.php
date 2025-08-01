@@ -27,7 +27,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles/inscription.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Outfit&display=swap" rel="stylesheet">
@@ -45,6 +45,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         </div>
     </header>
     <main>
+        <h1>Inscrivez-vous</h1>
         <form action="" method="post">
             <div class="container">
             <div class="field-container">
